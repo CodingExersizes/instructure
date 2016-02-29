@@ -20,9 +20,7 @@ class CoursesController {
     def token() {
         apiService.initialize()
         def token=apiService.token
-
         render(contentType: 'application/json', text: token)
-
 
     }
 }

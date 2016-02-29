@@ -14,6 +14,7 @@
     <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css/vendor', file: 'semantic.css')}" type="text/css">
 
     <g:javascript src="vendor/angular.js" />
     <g:javascript src="app.js" />
@@ -22,7 +23,7 @@
 
 <body>
 <header>
-    <div id="main-nav">
+    <div id="main-nav" class="ui left aligned header">
         <h1 class="logo">Instructure</h1>
     </div>
 </header>

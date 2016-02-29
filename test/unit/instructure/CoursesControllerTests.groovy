@@ -12,7 +12,6 @@ class CoursesControllerTests {
 
     @Test
     void shouldLoadDefaultTemplate() {
-
         controller.index()
         assertEquals(response.status,HttpStatus.OK.value())
     }
