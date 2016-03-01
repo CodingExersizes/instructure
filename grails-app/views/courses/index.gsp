@@ -29,7 +29,7 @@
                             <span data-ng-bind="course.description"></span>
                         </div>
 
-                        <button class="ui teal button">Enroll</button>
+                        <button class="ui teal button" data-ng-click="enroll(course.id)">Enroll</button>
                     </div>
 
                 </div>

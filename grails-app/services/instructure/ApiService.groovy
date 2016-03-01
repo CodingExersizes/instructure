@@ -4,6 +4,7 @@ import groovyx.net.http.HTTPBuilder
 
 import static groovyx.net.http.ContentType.TEXT
 import static groovyx.net.http.Method.GET
+import static groovyx.net.http.Method.POST
 
 class ApiService {
     def token
@@ -26,8 +27,7 @@ class ApiService {
             headers.'Authorization' = "Token $token"
             response.success = { resp, reader ->
                 assert resp.status == 200
-
-                courses = reader.getText() // print response reader
+                courses = reader.getText()
                 link = resp.responseBase.headergroup.headers.find { it.name == "Link" }.buffer.toString()
             }
         }
@@ -43,11 +43,23 @@ class ApiService {
             uri.query = query
             response.success = { resp, reader ->
                 assert resp.status == 200
-
-                courses = reader.getText() // print response reader
+                courses = reader.getText()
                 link = resp.responseBase.headergroup.headers.find { it.name == "Link" }.buffer.toString()
             }
         }
         [courses: courses, link: link]
+    }
+
+    def enroll(def id, def token, def payload) {
+        def status
+        http.request(POST, TEXT) { req ->
+            uri.path = "/api/v1/courses/${id}/enrollments"
+            headers.'Authorization' = "Token $token"
+            body= payload
+            response.success = { resp ->
+                status=resp.status
+            }
+        }
+        status
     }
 }

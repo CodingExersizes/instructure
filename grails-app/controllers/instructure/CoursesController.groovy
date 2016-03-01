@@ -1,5 +1,4 @@
 package instructure
-
 import grails.converters.JSON
 
 class CoursesController {
@@ -17,16 +16,26 @@ class CoursesController {
         def courses
         if (page && per_page) {
             def query = [page: page, per_page: per_page]
-            courses = apiService.updateCourses(new JSON().parse(token).data, query)
+            courses = apiService.updateCourses(token, query)
         } else
-            courses = apiService.getCourses(new JSON().parse(token).data)
+            courses = apiService.getCourses(token)
 
-        render(contentType: 'application/json', text: courses as JSON )
+        render(contentType: 'application/json', text: courses as JSON)
     }
 
     def token() {
         apiService.initialize()
-        def token=apiService.token
+        def token = apiService.token
         render(contentType: 'application/json', text: token)
+    }
+
+    def enroll() {
+
+        def id = request.JSON.id
+        def token = request.JSON.token
+        def payload =request.JSON.payload
+        def status= apiService.enroll(id, token, payload)
+
+        render(status: status)
     }
 }
