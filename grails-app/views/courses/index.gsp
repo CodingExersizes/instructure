@@ -35,9 +35,14 @@
                 </div>
             </div>
         </div>
-
+        <div class="ui teal horizontal label">Currently on page:
+            <div class="detail" data-ng-bind="currentPage"></div>
+        </div>
         <div class="ui divider">
-            <button id="link" class="ui button">Next</button>
+            <button class="ui button" data-ng-click="updateCourseList(links.first.page, links.first.per_page)">First</button>
+            <button data-ng-show="links.next" class="ui button" data-ng-click="updateCourseList(links.next.page, links.next.per_page)">Next</button>
+            <button data-ng-show="links.prev"class="ui button" data-ng-click="updateCourseList(links.prev.page, links.prev.per_page)">Previous</button>
+            <button class="ui button" data-ng-click="updateCourseList(links.last.page, links.last.per_page)">Last</button>
         </div>
 
     </div>

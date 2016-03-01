@@ -18,6 +18,10 @@
 
     <g:javascript src="vendor/angular.js" />
     <g:javascript src="app.js" />
+    %{-- Adding angular module for Link header parsing from https://libraries.io/bower/angular-link-header-parser--}%
+    <g:javascript src="bower_components/lodash/lodash.min.js"/>
+    <g:javascript src="bower_components/uri-util/dist/uri-util.min.js"/>
+    <g:javascript src="bower_components/angular-link-header-parser/release/angular-link-header-parser.js"/>
     <r:layoutResources/>
 </head>
 

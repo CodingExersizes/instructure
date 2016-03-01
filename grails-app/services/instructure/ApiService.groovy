@@ -13,11 +13,12 @@ class ApiService {
         http.post(path: "/api/v1/tokens"
         ) { resp, reader ->
             this.token = new groovy.json.JsonSlurper().parseText(new grails.converters.JSON(reader).toString()).token
-     }
+        }
 
 
     }
-    def getCourses(def token){
+
+    def getCourses(def token) {
         def courses
         def link
         http.request(GET, TEXT) { req ->
@@ -26,10 +27,27 @@ class ApiService {
             response.success = { resp, reader ->
                 assert resp.status == 200
 
-                courses =    reader.getText() // print response reader
-                link=resp.responseBase.headergroup.headers.find{it.name =="Link"}.buffer.toString()
+                courses = reader.getText() // print response reader
+                link = resp.responseBase.headergroup.headers.find { it.name == "Link" }.buffer.toString()
             }
         }
-        [courses:courses, link: link]
+        [courses: courses, link: link]
+    }
+
+    def updateCourses(def token, def query) {
+        def courses
+        def link
+        http.request(GET, TEXT) { req ->
+            uri.path = '/api/v1/courses'
+            headers.'Authorization' = "Token $token"
+            uri.query = query
+            response.success = { resp, reader ->
+                assert resp.status == 200
+
+                courses = reader.getText() // print response reader
+                link = resp.responseBase.headergroup.headers.find { it.name == "Link" }.buffer.toString()
+            }
+        }
+        [courses: courses, link: link]
     }
 }

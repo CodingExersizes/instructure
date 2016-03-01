@@ -12,7 +12,14 @@ class CoursesController {
 
     def list() {
         def token = params.token
-        def courses = apiService.getCourses(new JSON().parse(token).data)
+        def page = params.page
+        def per_page = params.per_page
+        def courses
+        if (page && per_page) {
+            def query = [page: page, per_page: per_page]
+            courses = apiService.updateCourses(new JSON().parse(token).data, query)
+        } else
+            courses = apiService.getCourses(new JSON().parse(token).data)
 
         render(contentType: 'application/json', text: courses as JSON )
     }
@@ -21,6 +28,5 @@ class CoursesController {
         apiService.initialize()
         def token=apiService.token
         render(contentType: 'application/json', text: token)
-
     }
 }
