@@ -26,7 +26,7 @@ app.controller('coursesController', function ($scope, $http, linkHeaderParser, $
 
     }
 
-    $scope.viewDetail = function (id) {
+    $scope.viewCourseDetail = function (id) {
         $window.location.href = ("/instructure/detail/" + id);
     }
 
@@ -39,7 +39,6 @@ app.controller('coursesController', function ($scope, $http, linkHeaderParser, $
         $scope.courses = angular.fromJson(data.data.courses)
         $scope.link = data.data.link
         $scope.parseLink($scope.link);
-
     }
 
     $scope.initialize();
@@ -53,7 +52,6 @@ app.controller('courseController', function ($scope, $http) {
         $http.get($scope.baseRoute + "/token").then(function (data) {
             $scope.token = data.data;
             $scope.getCourse(id)
-            $scope.currentPage = 1;
         });
     };
 
@@ -64,7 +62,6 @@ app.controller('courseController', function ($scope, $http) {
             }
         }).then(function (data) {
             $scope.course = angular.fromJson(data.data.course);
-            console.log($scope.course)
         });
     };
     $scope.enroll = function (id) {

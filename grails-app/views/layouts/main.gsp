@@ -25,10 +25,10 @@
     <r:layoutResources/>
 </head>
 
-<body data-ng-app="instructure">
+<body class="padded" data-ng-app="instructure">
 <header>
     <div id="main-nav" class="ui left aligned header">
-        <h1 class="logo">Instructure</h1>
+        <h1 class="padded">Instructure</h1>
     </div>
 </header>
 <g:layoutBody/>
