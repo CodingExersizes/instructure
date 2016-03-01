@@ -55,11 +55,27 @@ class ApiService {
         http.request(POST, TEXT) { req ->
             uri.path = "/api/v1/courses/${id}/enrollments"
             headers.'Authorization' = "Token $token"
-            body= payload
+            body = payload
             response.success = { resp ->
-                status=resp.status
+                status = resp.status
             }
         }
         status
     }
+
+    def getCourse(def id, def token) {
+        def course
+
+        http.request(GET, TEXT) { req ->
+            uri.path = "api/v1/courses/${id}"
+            headers.'Authorization' = "Token $token"
+            response.success = { resp, reader ->
+                assert resp.status == 200
+                course = reader.getText()
+            }
+        }
+        [course: course]
+    }
 }
+
+

@@ -25,6 +25,15 @@ class UrlMappings {
             action = "enroll"
         }
 
+        "/detail/$id" {
+            controller = "courses"
+            action = "view"
+        }
+        "/view/$id?" {
+            controller = "courses"
+            action = "courseDetail"
+        }
+
         "500"(view: '/error')
     }
 }

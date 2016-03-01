@@ -9,6 +9,18 @@ class CoursesController {
         render(view: "index")
     }
 
+    def view(String id){
+
+      render(view: "course", model:[id:id])
+
+    }
+
+    def courseDetail(String id){
+        def token = params.token
+        def course = apiService.getCourse(id, token)
+        render(contentType: 'application/json', text: course as JSON)
+    }
+
     def list() {
         def token = params.token
         def page = params.page
@@ -30,7 +42,6 @@ class CoursesController {
     }
 
     def enroll() {
-
         def id = request.JSON.id
         def token = request.JSON.token
         def payload =request.JSON.payload

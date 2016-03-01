@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div data-ng-app="instructure" data-ng-controller="coursesController">
+<div  data-ng-controller="coursesController">
 
     <div>
         <div class="ui relaxed divided list">
@@ -24,12 +24,7 @@
                         </div>
 
 
-                        <div class="ui raised segment">
-                            <a class="ui black ribbon label">Course Description</a>
-                            <span data-ng-bind="course.description"></span>
-                        </div>
-
-                        <button class="ui teal button" data-ng-click="enroll(course.id)">Enroll</button>
+                        <button class="ui teal button" data-ng-click="viewDetail(course.id)">Learn More..</button>
                     </div>
 
                 </div>

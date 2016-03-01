@@ -25,7 +25,7 @@
     <r:layoutResources/>
 </head>
 
-<body>
+<body data-ng-app="instructure">
 <header>
     <div id="main-nav" class="ui left aligned header">
         <h1 class="logo">Instructure</h1>
